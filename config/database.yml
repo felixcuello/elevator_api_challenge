@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= Rails.application.credentials.dig(:db, :host) %>
+  port: <%= Rails.application.credentials.dig(:db, :port) %>
+  username: <%= Rails.application.credentials.dig(:db, :username) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: elevator_api_challenge_development
+
+test:
+  <<: *default
+  database: elevator_api_challenge_test
+
+production:
+  <<: *default
+  database: elevator_api_challenge_production
+  username: elevator_api_challenge
+  password: <%= ENV["ELEVATOR_API_CHALLENGE_DATABASE_PASSWORD"] %>

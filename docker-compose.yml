@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:16.0
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: ${APP_NAME}
+    environment:
+      APP_NAME: ${APP_NAME}
+    tty: true
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/${APP_NAME}
+    depends_on:
+      - db
+
+  redis:
+    image: redis:7.2.1-alpine
+    command: redis-server
+    ports:
+      - 6379:6379
+    volumes:
+      - ./config/redis.conf:/redis.conf
+
+  sidekiq:
+    build: .
+    depends_on:
+      - redis
+    command: bundle exec sidekiq
+
+volumes:
+  postgres_data:

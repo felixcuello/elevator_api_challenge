@@ -1,0 +1,52 @@
+big_capacity:
+  building: skyscraper
+  model: <%= Elevator::MODELS.sample %>
+  capacity: <%= Faker::Number.between(from: 1_000, to: 10_000) %>
+  data: {
+    "maintainer":<%= Faker::Company.name %>,
+    "maintenance_date": <%= Faker::Date.between(from: 1.year.ago, to: 1.year.from_now).strftime("%Y-%m-%d") %>,
+    "doors_status": ["good"]
+  }
+
+low_capacity:
+  building: hotel
+  model: <%= Elevator::MODELS.sample %>
+  capacity: <%= Faker::Number.between(from: 1_000, to: 5_000) %>
+  data: {
+    "maintainer":<%= Faker::Company.name %>,
+    "maintenance_date": <%= Faker::Date.between(from: 1.year.ago, to: 1.year.from_now).strftime("%Y-%m-%d") %>,
+    "doors_status": ["good"]
+  }
+
+ground_floor_elevator:
+  building: hotel
+  model: <%= Elevator::MODELS.sample %>
+  capacity: <%= Faker::Number.between(from: 1_000, to: 5_000) %>
+  status: <%= Elevator.statuses[:ground_floor] %>
+  data: {
+    "maintainer":<%= Faker::Company.name %>,
+    "maintenance_date": <%= Faker::Date.between(from: 1.year.ago, to: 1.year.from_now).strftime("%Y-%m-%d") %>,
+    "doors_status": ["good"]
+  }
+
+traveling_elevator:
+  building: hotel
+  model: <%= Elevator::MODELS.sample %>
+  capacity: <%= Faker::Number.between(from: 1_000, to: 5_000) %>
+  status: <%= Elevator.statuses[:traveling] %>
+  data: {
+    "maintainer":<%= Faker::Company.name %>,
+    "maintenance_date": <%= Faker::Date.between(from: 1.year.ago, to: 1.year.from_now).strftime("%Y-%m-%d") %>,
+    "doors_status": ["good"]
+  }
+
+top_floor_elevator:
+  building: hotel
+  model: <%= Elevator::MODELS.sample %>
+  capacity: <%= Faker::Number.between(from: 1_000, to: 5_000) %>
+  status: <%= Elevator.statuses[:top_floor] %>
+  data: {
+    "maintainer":<%= Faker::Company.name %>,
+    "maintenance_date": <%= Faker::Date.between(from: 1.year.ago, to: 1.year.from_now).strftime("%Y-%m-%d") %>,
+    "doors_status": ["good"]
+  }

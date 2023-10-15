@@ -1,0 +1,17 @@
+skyscraper:
+  floors: <%= Faker::Number.between(from: 40, to: 60) %>
+  street: <%= Faker::Address.street_address %>
+  city: <%= Faker::Address.city %>
+  country: <%= Faker::Address.country %>
+
+hotel:
+  floors: <%= Faker::Number.between(from: 2, to: 8) %>
+  street: <%= Faker::Address.street_address %>
+  city: <%= Faker::Address.city %>
+  country: <%= Faker::Address.country %>
+
+skyscraper_no_elevators:
+  floors: <%= Faker::Number.between(from: 40, to: 60) %>
+  street: <%= Faker::Address.street_address %>
+  city: <%= Faker::Address.city %>
+  country: <%= Faker::Address.country %>

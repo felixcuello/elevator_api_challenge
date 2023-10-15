@@ -1,0 +1,28 @@
+AllCops:
+    TargetRubyVersion: 3.2.2
+    NewCops: enable
+    Exclude:
+      - 'config/initializers/devise.rb'
+      - 'config/environments/*'
+      - 'config/routes.rb'
+      - 'db/**/*'
+      - 'vendor/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  SafeAutoCorrect: true
+Style/Documentation:
+  Enabled: false
+Style/ArgumentsForwarding:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
+  Max: 15
+Metrics/MethodLength:
+  Max: 100
+

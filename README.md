@@ -72,3 +72,31 @@ The elevator cannot change directions while traveling.
 - If you check the JSON schemas
 
 - If only authenticated users can create, update, delete, or change directions on the elevators.
+
+
+# Api only
+## Getting Started
+### Prerequisites
+- Docker
+- Ruby 3.2.2
+- Rails 7.0.8
+
+## Usage
+
+### Set up images and container
+1. Ask an admin for the `master.key`
+2. create a copy of `.env` as `.env.dev` for development (Ask an admin for the envar values)
+3. Run `docker-compose --env-file ENV_FILE up` changing to the appropriate `.env.*` file
+4. Run seeds `docker exec CONTAINER_ID rails db:seed` changing to the appropriate `CONTAINER_ID`
+
+## Testing
+To run the test suite open another console prompt and, **while the container is running**, you can run
+```console
+docker-compose exec CONTAINER_ID bin/rails test
+```
+
+## Versioning
+
+### V1
+Currently this api server only `v1` at `api/v1`
+
