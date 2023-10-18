@@ -1,0 +1,188 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/buildings":
+    get:
+      summary: list buildings
+      tags:
+      - Buildings
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create building
+      tags:
+      - Buildings
+      responses:
+        '200':
+          description: successful
+  "/api/v1/buildings/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show building
+      tags:
+      - Buildings
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update building
+      tags:
+      - Buildings
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete building
+      tags:
+      - Buildings
+      responses:
+        '200':
+          description: successful
+  "/api/v1/elevators/{id}/move_down":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: move_down elevator
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+  "/api/v1/elevators/{id}/move_up":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: move_up elevator
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+  "/api/v1/elevators":
+    get:
+      summary: list elevators
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create elevator
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+  "/api/v1/elevators/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show elevator
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update elevator
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete elevator
+      tags:
+      - Elevators
+      responses:
+        '200':
+          description: successful
+  "/api/registration/sign_up":
+    post:
+      summary: create registration
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/api/login":
+    parameters:
+    - name: user
+      in: body
+      schema:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+            required:
+            - email
+            - password
+        required:
+        - user
+    post:
+      summary: create session
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/api/logout":
+    delete:
+      summary: delete session
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+tags:
+- name: Elevators
+  description: complete CRUD for elevators
+- name: Buildings
+  description: Complete CRUD for elevators
+- name: Users
+  description: User options
+servers:
+- url: http://127.0.0.1:3000
+  variables:
+    defaultHost:
+      default: http://127.0.0.1:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      name: Authorization
+      in: header
+      description: JWT key necessary to use API calls
+security:
+- bearerAuth: []
