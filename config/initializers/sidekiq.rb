@@ -4,8 +4,7 @@ require "sidekiq"
 require "sidekiq-unique-jobs"
 
 Sidekiq.configure_server do |config|
-  config.redis = { url: ENV.fetch("REDIS_URL", nil), driver: :ruby }
-  # config.redis = { url: Railsddd.application.credentials.dig(:redis, :url), driver: :ruby }
+  config.redis = { url: Rails.application.credentials.dig(:redis, :url), driver: :ruby }
 
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
@@ -18,10 +17,10 @@ Sidekiq.configure_server do |config|
   SidekiqUniqueJobs::Server.configure(config)
 end
 
-# Sidekiq.configure_client do |config|
-#   config.redis = { url: ENV.fetch("REDIS_URL", nil), driver: :ruby }
+Sidekiq.configure_client do |config|
+  config.redis = { url: Rails.application.credentials.dig(:redis, :url), driver: :ruby }
 
-#   config.client_middleware do |chain|
-#     chain.add SidekiqUniqueJobs::Middleware::Client
-#   end
-# end
+  config.client_middleware do |chain|
+    chain.add SidekiqUniqueJobs::Middleware::Client
+  end
+end
