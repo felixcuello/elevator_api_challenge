@@ -1,6 +1,29 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  devise_for :users, path: '', path_names: {
+    sign_in: 'api/login',
+    sign_out: 'api/logout',
+    registration: 'api/registration'
+  },
+  controllers: {
+  sessions: 'users/sessions',
+  registrations: 'users/registrations'
+  }, defaults: { format: :json }
+
+
+  namespace :api do
+    namespace :v1 do
+      resources :buildings, only: %i[index show create update destroy]
+      resources :elevators, only: %i[index show create update destroy] do
+        member do
+          get :move_down
+          get :move_up
+        end
+      end
+    end
+  end
+
+  match '*path', to: redirect('/'), via: :all
 end

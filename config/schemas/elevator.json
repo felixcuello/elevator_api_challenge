@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "maintainer": {
+      "type": "string"
+    },
+    "maintenance_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "doors_status": {
+      "type": "array",
+      "items": {
+          "type": "string",
+          "enum": ["good", "bad"]
+      }
+    }
+  },
+  "required": [
+    "maintenance_date",
+    "maintainer",
+    "doors_status"
+  ]
+}

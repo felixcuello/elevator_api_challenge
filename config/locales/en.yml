@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        elevator:
+          attributes:
+            data:
+              invalid_json: "is not a valid JSON schema"
